@@ -1,18 +1,28 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Collider2D))]
 public class CatCollectible : MonoBehaviour, IClickable, IHoverable
 {
     [Header("Run Away")]
     public float jumpForce = 4f;
     public float runSpeed = 3f;
     public float gravityScale = 3f;
-    public float jumpAirTime = 0.4f;
     public float runDuration = 3f;
+    public string groundTag = "Ground";
+
+    [Header("Scoring")]
+    public bool countsTowardScore = true;
+
+    private static readonly int JumpHash = Animator.StringToHash("Jump");
+    private static readonly int IsRunningHash = Animator.StringToHash("IsRunning");
 
     private Animator anim;
     private Rigidbody2D rb;
     private bool collected = false;
+    private bool hasLanded = false;
 
     void Awake()
     {
@@ -31,31 +41,44 @@ public class CatCollectible : MonoBehaviour, IClickable, IHoverable
         if (collected) return;
         collected = true;
 
-        GetComponent<Collider2D>().enabled = false;
+        // NOT disabling the collider here anymore - it still needs to
+        // physically collide with the ground while falling. The
+        // "collected" check above already stops repeat clicks.
 
-        CatManager.Instance.CollectCat();
+        if (countsTowardScore)
+            CatManager.Instance.CollectCat();
+
         StartCoroutine(RunAwaySequence());
     }
 
     private IEnumerator RunAwaySequence()
     {
-        anim.SetTrigger("Jump");
+        anim.SetTrigger(JumpHash);
+        hasLanded = false;
+
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = gravityScale;
         rb.linearVelocity = new Vector2(0f, jumpForce);
 
-        yield return new WaitForSeconds(jumpAirTime);
+        yield return new WaitUntil(() => hasLanded);
 
-        // face right before running off, regardless of idle pose
+        rb.linearVelocity = Vector2.zero;
+
         Vector3 scale = transform.localScale;
         transform.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
 
-        anim.SetBool("IsRunning", true);
+        anim.SetBool(IsRunningHash, true);
         rb.gravityScale = 0f;
         rb.linearVelocity = new Vector2(runSpeed, 0f);
 
         yield return new WaitForSeconds(runDuration);
 
         Destroy(gameObject);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(groundTag))
+            hasLanded = true;
     }
 }

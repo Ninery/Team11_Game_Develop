@@ -1858,37 +1858,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336262526}
   m_CullTransparentMesh: 1
---- !u!1 &345228616
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 345228617}
-  m_Layer: 0
-  m_Name: Collectables
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &345228617
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345228616}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.76614, y: -0.09487, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &406236980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2855,7 +2824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ComponentVersion: 3
+  m_ComponentVersion: 2
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
@@ -5613,7 +5582,7 @@ Transform:
   m_GameObject: {fileID: 1181550800}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06500089, y: 0.012424801, z: -10}
+  m_LocalPosition: {x: -0.06500605, y: 0.0124448, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6348,8 +6317,8 @@ Transform:
   m_GameObject: {fileID: 1289099180}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0543, y: 0.0592, z: 0}
-  m_LocalScale: {x: 1.9021335, y: 4.469239, z: 1}
+  m_LocalPosition: {x: -1.0543, y: 0.0615, z: 0}
+  m_LocalScale: {x: 1.9021335, y: 4.6712894, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1282134588}
@@ -7360,8 +7329,9 @@ MonoBehaviour:
   jumpForce: 1
   runSpeed: 0.5
   gravityScale: 1
-  jumpAirTime: 0.4
   runDuration: 10
+  groundTag: Ground
+  countsTowardScore: 1
 --- !u!50 &1682035799
 Rigidbody2D:
   serializedVersion: 5
@@ -9835,15 +9805,14 @@ SceneRoots:
   - {fileID: 530253074}
   - {fileID: 827946529}
   - {fileID: 1705389147}
-  - {fileID: 417876005}
   - {fileID: 833037681}
   - {fileID: 1194570491}
   - {fileID: 1282134588}
   - {fileID: 1030604904314756955}
-  - {fileID: 345228617}
   - {fileID: 1915922185}
   - {fileID: 1340905482}
   - {fileID: 2143766460}
+  - {fileID: 417876005}
   - {fileID: 453595550}
   - {fileID: 1128058445}
   - {fileID: 796692680}

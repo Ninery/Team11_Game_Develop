@@ -1,21 +1,34 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class DoorInteract : MonoBehaviour, IInteractable
 {
+    [Header("Door Parent")]
+    public GameObject doorIdentity;
+
     [Header("Door Visuals")]
     public GameObject doorClosed;
     public GameObject doorOpen;
 
-    [Header("Requirement")]
-    public string requiredItem = "KeyCard";
+    [Header("Requirement (leave blank for no requirement)")]
+    public string requiredItem = "";
 
-    private bool isUnlocked = false;
+    private static HashSet<int> openedDoors = new HashSet<int>();
+
+    void Start()
+    {
+        if (doorIdentity != null && openedDoors.Contains(doorIdentity.GetInstanceID()))
+            ApplyOpenState();
+    }
 
     public void Interact()
     {
-        if (isUnlocked) return;
+        if (doorIdentity != null && openedDoors.Contains(doorIdentity.GetInstanceID()))
+            return;
 
-        if (Inventory.Instance.HasItem(requiredItem))
+        bool hasRequirement = string.IsNullOrEmpty(requiredItem) || Inventory.Instance.HasItem(requiredItem);
+
+        if (hasRequirement)
         {
             UnlockDoor();
         }
@@ -27,16 +40,21 @@ public class DoorInteract : MonoBehaviour, IInteractable
 
     private void UnlockDoor()
     {
-        isUnlocked = true;
+        if (!string.IsNullOrEmpty(requiredItem))
+            Inventory.Instance.RemoveItem(requiredItem);
 
-        Inventory.Instance.RemoveItem(requiredItem);
+        if (doorIdentity != null)
+            openedDoors.Add(doorIdentity.GetInstanceID());
 
+        ApplyOpenState();
+    }
+
+    private void ApplyOpenState()
+    {
         doorClosed.SetActive(false);
         doorOpen.SetActive(true);
 
         foreach (Collider2D col in GetComponentsInChildren<Collider2D>())
-        {
             col.enabled = false;
-        }
     }
 }

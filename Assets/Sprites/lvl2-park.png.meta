@@ -1,0 +1,899 @@
+fileFormatVersion: 2
+guid: 40e63588334ec924f8d678dd67015484
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7838851682838565116
+    second: lvl2-park_0
+  - first:
+      213: -163464361881411029
+    second: lvl2-park_1
+  - first:
+      213: 3763147289980994359
+    second: lvl2-park_2
+  - first:
+      213: -8762613567517949373
+    second: lvl2-park_3
+  - first:
+      213: -3350912276998088986
+    second: lvl2-park_4
+  - first:
+      213: -2106671791543696878
+    second: lvl2-park_5
+  - first:
+      213: 5402990338025638209
+    second: lvl2-park_6
+  - first:
+      213: -6806737867406298889
+    second: lvl2-park_7
+  - first:
+      213: 5119168089441076281
+    second: lvl2-park_8
+  - first:
+      213: 2150441011458925623
+    second: lvl2-park_9
+  - first:
+      213: 941957182449242506
+    second: lvl2-park_10
+  - first:
+      213: 4929348648463974015
+    second: lvl2-park_11
+  - first:
+      213: 4609823017902908865
+    second: lvl2-park_12
+  - first:
+      213: -7899619053913361050
+    second: lvl2-park_13
+  - first:
+      213: -4000233016823392492
+    second: lvl2-park_14
+  - first:
+      213: 338560826417532490
+    second: lvl2-park_15
+  - first:
+      213: -6901909301731917985
+    second: lvl2-park_16
+  - first:
+      213: 743124631897313242
+    second: lvl2-park_17
+  - first:
+      213: 3772761675762521106
+    second: lvl2-park_18
+  - first:
+      213: -3113145228911281598
+    second: lvl2-park_19
+  - first:
+      213: 8510802386130593241
+    second: lvl2-park_20
+  - first:
+      213: -429058957276986731
+    second: lvl2-park_21
+  - first:
+      213: 245487640157278031
+    second: lvl2-park_22
+  - first:
+      213: -4889566587268478045
+    second: lvl2-park_23
+  - first:
+      213: 9078973304637822660
+    second: lvl2-park_24
+  - first:
+      213: 9015717382682778950
+    second: lvl2-park_25
+  - first:
+      213: -5634368623099891320
+    second: lvl2-park_26
+  - first:
+      213: 6158147822397757905
+    second: lvl2-park_27
+  - first:
+      213: 7078646714711518863
+    second: lvl2-park_28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lvl2-park_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 359
+        width: 92
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40f2f6d2dedc63390800000000000000
+      internalID: -7838851682838565116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_1
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 378
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b226f9867024bbdf0800000000000000
+      internalID: -163464361881411029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_2
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 378
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7338ac0b582693430800000000000000
+      internalID: 3763147289980994359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_3
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 294
+        width: 92
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 342031cf261f46680800000000000000
+      internalID: -8762613567517949373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_4
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 240
+        width: 172
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e69808b90b2f71d0800000000000000
+      internalID: -3350912276998088986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_5
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 266
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 212c3beca2993c2e0800000000000000
+      internalID: -2106671791543696878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_6
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 266
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 149c2ee06174bfa40800000000000000
+      internalID: 5402990338025638209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_7
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 266
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f03c0629fb9981a0800000000000000
+      internalID: -6806737867406298889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_8
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 266
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93486ac3140fa0740800000000000000
+      internalID: 5119168089441076281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_9
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 279
+        width: 15
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 734e076d4b6e7dd10800000000000000
+      internalID: 2150441011458925623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_10
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 261
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a81d3851111821d00800000000000000
+      internalID: 941957182449242506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_11
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 242
+        width: 32
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7e3fbd9a70986440800000000000000
+      internalID: 4929348648463974015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_12
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 234
+        width: 57
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c5a5836c9169ff30800000000000000
+      internalID: 4609823017902908865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_13
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 212
+        width: 31
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 665369e035aee5290800000000000000
+      internalID: -7899619053913361050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_14
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 203
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 417d37de3415c78c0800000000000000
+      internalID: -4000233016823392492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_15
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 199
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4eca71274fc2b400800000000000000
+      internalID: 338560826417532490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_16
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 126
+        width: 64
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5ffd46de0e7730a0800000000000000
+      internalID: -6901909301731917985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_17
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 113
+        width: 78
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adf051c5aeb105a00800000000000000
+      internalID: 743124631897313242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_18
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 148
+        width: 7
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 214580251ca8b5430800000000000000
+      internalID: 3772761675762521106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_19
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 148
+        width: 17
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24a7a8098e2ebc4d0800000000000000
+      internalID: -3113145228911281598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_20
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 144
+        width: 20
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d56cd29da17c1670800000000000000
+      internalID: 8510802386130593241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_21
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 144
+        width: 41
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5924ecfc62dab0af0800000000000000
+      internalID: -429058957276986731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_22
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 96
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4fc25445b5286300800000000000000
+      internalID: 245487640157278031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_23
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 108
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ab4e3c4815c42cb0800000000000000
+      internalID: -4889566587268478045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_24
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 15
+        width: 44
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c6113c3e1efefd70800000000000000
+      internalID: 9078973304637822660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_25
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 55
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64d1f1631334e1d70800000000000000
+      internalID: 9015717382682778950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_26
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 12
+        width: 115
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8813686e693bec1b0800000000000000
+      internalID: -5634368623099891320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_27
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 12
+        width: 119
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d91d5431d2267550800000000000000
+      internalID: 6158147822397757905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvl2-park_28
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 38
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8eadd8cea76c3260800000000000000
+      internalID: 7078646714711518863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2d0bc4a13c102764490f18cec44508ab
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":1,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      lvl2-park_0: -7838851682838565116
+      lvl2-park_1: -163464361881411029
+      lvl2-park_10: 941957182449242506
+      lvl2-park_11: 4929348648463974015
+      lvl2-park_12: 4609823017902908865
+      lvl2-park_13: -7899619053913361050
+      lvl2-park_14: -4000233016823392492
+      lvl2-park_15: 338560826417532490
+      lvl2-park_16: -6901909301731917985
+      lvl2-park_17: 743124631897313242
+      lvl2-park_18: 3772761675762521106
+      lvl2-park_19: -3113145228911281598
+      lvl2-park_2: 3763147289980994359
+      lvl2-park_20: 8510802386130593241
+      lvl2-park_21: -429058957276986731
+      lvl2-park_22: 245487640157278031
+      lvl2-park_23: -4889566587268478045
+      lvl2-park_24: 9078973304637822660
+      lvl2-park_25: 9015717382682778950
+      lvl2-park_26: -5634368623099891320
+      lvl2-park_27: 6158147822397757905
+      lvl2-park_28: 7078646714711518863
+      lvl2-park_3: -8762613567517949373
+      lvl2-park_4: -3350912276998088986
+      lvl2-park_5: -2106671791543696878
+      lvl2-park_6: 5402990338025638209
+      lvl2-park_7: -6806737867406298889
+      lvl2-park_8: 5119168089441076281
+      lvl2-park_9: 2150441011458925623
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

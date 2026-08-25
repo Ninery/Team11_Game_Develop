@@ -15,19 +15,12 @@ public class CursorManager : MonoBehaviour
     private GameObject hoveredObject;
     private RectTransform activeCursor;
 
-    void Start()
-    {
-        Cursor.visible = false;
-        DontDestroyOnLoad(gameObject);
-    }
-
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            Cursor.visible = false;
         }
         else
         {
@@ -35,11 +28,17 @@ public class CursorManager : MonoBehaviour
             return;
         }
 
+        Cursor.visible = false;
         SetActiveCursor(normalCursor);
     }
 
     void Update()
     {
+        // WebGL can silently re-show the OS cursor on focus/click events,
+        // so keep forcing it off every frame instead of trusting a single call.
+        if (Cursor.visible)
+            Cursor.visible = false;
+
         Vector2 mousePos = Mouse.current.position.ReadValue();
         if (activeCursor != null)
             activeCursor.position = mousePos;
