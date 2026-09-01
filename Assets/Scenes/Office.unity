@@ -1838,7 +1838,7 @@ Transform:
   m_GameObject: {fileID: 240881335}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1847, y: -0.26, z: 0}
+  m_LocalPosition: {x: 2.1847, y: -0.26, z: 0.1}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1872,8 +1872,9 @@ MonoBehaviour:
   jumpForce: 1
   runSpeed: 0.5
   gravityScale: 1
-  jumpAirTime: 0.4
   runDuration: 10
+  groundTag: Ground
+  countsTowardScore: 1
 --- !u!50 &240881341
 Rigidbody2D:
   serializedVersion: 5
@@ -3305,6 +3306,7 @@ MonoBehaviour:
   maxIdleTime: 2
   alertDuration: 0.5
   loseSightDuration: 3
+  searchArriveDistance: 0.3
   exclamationIcon: {fileID: 2034350749}
 --- !u!50 &453276502
 Rigidbody2D:
@@ -7037,8 +7039,9 @@ MonoBehaviour:
   jumpForce: 1
   runSpeed: 0.5
   gravityScale: 1
-  jumpAirTime: 0.4
   runDuration: 10
+  groundTag: Ground
+  countsTowardScore: 1
 --- !u!50 &1286331141
 Rigidbody2D:
   serializedVersion: 5
@@ -11999,6 +12002,7 @@ SceneRoots:
   - {fileID: 1030604904314756955}
   - {fileID: 1770673645}
   - {fileID: 721330259}
+  - {fileID: 1018152624}
   - {fileID: 1340905482}
   - {fileID: 1385693248}
   - {fileID: 1915922185}
@@ -12006,4 +12010,3 @@ SceneRoots:
   - {fileID: 1802141983}
   - {fileID: 240881338}
   - {fileID: 1286331146}
-  - {fileID: 1018152624}

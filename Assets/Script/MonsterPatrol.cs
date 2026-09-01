@@ -12,17 +12,21 @@ public class MonsterPatrol : MonoBehaviour
     public float moveSpeed = 2f;
     public float chaseSpeed = 4f;
 
-    [Header("Walk Timing")]
+    [Header("Patrol Style")]
+    public bool randomPatrol = true; // true = Office style (random walk/idle), false = Park style (constant bounce)
+
+    [Header("Walk Timing (random patrol only)")]
     public float minWalkTime = 1.5f;
     public float maxWalkTime = 4f;
 
-    [Header("Idle Timing")]
+    [Header("Idle Timing (random patrol only)")]
     public float minIdleTime = 1f;
     public float maxIdleTime = 5f;
 
     [Header("Detection")]
     public float alertDuration = 1f;
     public float loseSightDuration = 3f;
+    public float searchArriveDistance = 0.3f;
     public GameObject exclamationIcon;
 
     private Rigidbody2D rb;
@@ -39,12 +43,22 @@ public class MonsterPatrol : MonoBehaviour
     private Player targetPlayer;
     private bool playerInCone = false;
 
+    private Vector2 lastKnownPosition;
+    private bool hasArrivedAtLastKnown = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         if (exclamationIcon != null) exclamationIcon.SetActive(false);
-        PickNewWalk();
+
+        if (randomPatrol)
+            PickNewWalk();
+        else
+        {
+            direction = transform.position.x <= pointA.position.x ? 1f : -1f;
+            UpdateFacing();
+        }
     }
 
     void Update()
@@ -74,11 +88,19 @@ public class MonsterPatrol : MonoBehaviour
         if (currentState == MonsterState.Chasing)
         {
             bool visible = targetPlayer != null && playerInCone && !targetPlayer.isHidden;
-            rb.linearVelocity = visible ? new Vector2(direction * chaseSpeed, 0f) : Vector2.zero;
+
+            if (visible || !hasArrivedAtLastKnown)
+            {
+                rb.linearVelocity = new Vector2(direction * chaseSpeed, 0f);
+            }
+            else
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
             return;
         }
 
-        if (isIdle)
+        if (randomPatrol && isIdle)
         {
             rb.linearVelocity = Vector2.zero;
             return;
@@ -89,30 +111,44 @@ public class MonsterPatrol : MonoBehaviour
 
     private void UpdatePatrol()
     {
-        if (isIdle)
+        if (randomPatrol)
         {
-            anim.SetBool("IsWalking", false);
-            idleTimer -= Time.deltaTime;
-
-            if (idleTimer <= 0f)
+            if (isIdle)
             {
-                isIdle = false;
-                PickNewWalk();
+                anim.SetBool("IsWalking", false);
+                idleTimer -= Time.deltaTime;
+
+                if (idleTimer <= 0f)
+                {
+                    isIdle = false;
+                    PickNewWalk();
+                }
+                return;
+            }
+
+            anim.SetBool("IsWalking", true);
+
+            walkTimer -= Time.deltaTime;
+
+            bool atBoundRandom = (direction > 0f && transform.position.x >= pointB.position.x) ||
+                           (direction < 0f && transform.position.x <= pointA.position.x);
+
+            if (walkTimer <= 0f || atBoundRandom)
+            {
+                isIdle = true;
+                idleTimer = Random.Range(minIdleTime, maxIdleTime);
             }
             return;
         }
 
-        anim.SetBool("IsWalking", true);
-
-        walkTimer -= Time.deltaTime;
-
+        
         bool atBound = (direction > 0f && transform.position.x >= pointB.position.x) ||
                        (direction < 0f && transform.position.x <= pointA.position.x);
 
-        if (walkTimer <= 0f || atBound)
+        if (atBound)
         {
-            isIdle = true;
-            idleTimer = Random.Range(minIdleTime, maxIdleTime);
+            direction *= -1f;
+            UpdateFacing();
         }
     }
 
@@ -136,22 +172,36 @@ public class MonsterPatrol : MonoBehaviour
 
         bool visible = playerInCone && !targetPlayer.isHidden;
 
-        if (!visible)
+        if (visible)
         {
-            anim.SetBool("IsWalking", false);
-            outOfSightTimer += Time.deltaTime;
+            lastKnownPosition = targetPlayer.transform.position;
+            hasArrivedAtLastKnown = false;
+            outOfSightTimer = 0f;
 
-            if (outOfSightTimer >= loseSightDuration)
-            {
-                EndChase();
-            }
-            return; // don't touch direction/facing while the player isn't actually visible
+            anim.SetBool("IsWalking", true);
+            direction = targetPlayer.transform.position.x > transform.position.x ? 1f : -1f;
+            UpdateFacing();
+            return;
         }
 
-        outOfSightTimer = 0f;
-        anim.SetBool("IsWalking", true);
-        direction = targetPlayer.transform.position.x > transform.position.x ? 1f : -1f;
-        UpdateFacing();
+        float distanceToLastKnown = Mathf.Abs(transform.position.x - lastKnownPosition.x);
+
+        if (!hasArrivedAtLastKnown && distanceToLastKnown > searchArriveDistance)
+        {
+            anim.SetBool("IsWalking", true);
+            direction = lastKnownPosition.x > transform.position.x ? 1f : -1f;
+            UpdateFacing();
+            return;
+        }
+
+        hasArrivedAtLastKnown = true;
+        anim.SetBool("IsWalking", false);
+        outOfSightTimer += Time.deltaTime;
+
+        if (outOfSightTimer >= loseSightDuration)
+        {
+            EndChase();
+        }
     }
 
     private void PickNewWalk()
@@ -186,6 +236,10 @@ public class MonsterPatrol : MonoBehaviour
     {
         currentState = MonsterState.Chasing;
         outOfSightTimer = 0f;
+        hasArrivedAtLastKnown = false;
+
+        if (targetPlayer != null)
+            lastKnownPosition = targetPlayer.transform.position;
     }
 
     private void EndChase()
@@ -193,10 +247,18 @@ public class MonsterPatrol : MonoBehaviour
         currentState = MonsterState.Patrol;
         targetPlayer = null;
         isIdle = false;
+        hasArrivedAtLastKnown = false;
 
         if (exclamationIcon != null) exclamationIcon.SetActive(false);
 
-        PickNewWalk();
+        if (randomPatrol)
+            PickNewWalk();
+        else
+        {
+            direction = transform.position.x <= pointA.position.x ? 1f :
+                        transform.position.x >= pointB.position.x ? -1f : direction;
+            UpdateFacing();
+        }
     }
 
     public void PlayerEnteredVision(Player player)

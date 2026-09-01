@@ -30,12 +30,10 @@ public class SceneTransition : MonoBehaviour
 
     private IEnumerator FadeAndLoad(string sceneName)
     {
-        // fade to black
         yield return StartCoroutine(Fade(0f, 1f));
 
         SceneManager.LoadScene(sceneName);
 
-        // fade back in on the new scene
         yield return StartCoroutine(Fade(1f, 0f));
     }
 

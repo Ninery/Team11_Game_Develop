@@ -15,7 +15,9 @@ public class DialogueManager : MonoBehaviour
     public float charactersPerSecond = 30f;
 
     [Header("Auto Close")]
-    public float autoCloseDelay = 2f; // seconds after typing finishes before auto-closing
+    public float autoCloseDelay = 2f;
+
+    public System.Action OnDialogueClosed;
 
     private Coroutine typingCoroutine;
     private Coroutine autoCloseCoroutine;
@@ -66,6 +68,21 @@ public class DialogueManager : MonoBehaviour
         typingCoroutine = StartCoroutine(TypeText());
     }
 
+    // lets other scripts yield until this exact dialogue has actually closed,
+    // whether by natural auto-close or the player skipping/closing early
+    public IEnumerator ShowDialogueAndWait(string message)
+    {
+        bool closed = false;
+        void Handler() => closed = true;
+
+        OnDialogueClosed += Handler;
+        ShowDialogue(message);
+
+        yield return new WaitUntil(() => closed);
+
+        OnDialogueClosed -= Handler;
+    }
+
     private IEnumerator TypeText()
     {
         isTyping = true;
@@ -111,5 +128,6 @@ public class DialogueManager : MonoBehaviour
             StopCoroutine(autoCloseCoroutine);
 
         dialogueBox.SetActive(false);
+        OnDialogueClosed?.Invoke();
     }
 }
