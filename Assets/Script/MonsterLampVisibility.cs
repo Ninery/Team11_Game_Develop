@@ -5,7 +5,7 @@ public class MonsterLampVisibility : MonoBehaviour
 {
     public string lampTag = "LampLight";
     public float fadeSpeed = 3f;
-    public float startingAlpha = 0f; // alpha while NOT in a lamp's light - used at boot AND every fade-out
+    public float startingAlpha = 0f;
 
     private SpriteRenderer sr;
     private Coroutine fadeCoroutine;
@@ -24,14 +24,18 @@ public class MonsterLampVisibility : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (!gameObject.activeInHierarchy) return;
+
         if (other.CompareTag(lampTag))
             StartFade(1f);
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
+        if (!gameObject.activeInHierarchy) return;
+
         if (other.CompareTag(lampTag))
-            StartFade(startingAlpha);
+            StartFade(0f);
     }
 
     private void StartFade(float targetAlpha)

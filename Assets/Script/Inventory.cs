@@ -24,6 +24,16 @@ public class Inventory : MonoBehaviour
             slot.icon.SetActive(false);
     }
 
+    void Start()
+    {
+        if (CheckpointManager.Instance != null &&
+            CheckpointManager.Instance.TryGetCheckpoint(out _, out List<string> savedItems))
+        {
+            foreach (string item in savedItems)
+                AddItem(item);
+        }
+    }
+
     public void AddItem(string itemName)
     {
         heldItems.Add(itemName);
@@ -39,6 +49,11 @@ public class Inventory : MonoBehaviour
     public bool HasItem(string itemName)
     {
         return heldItems.Contains(itemName);
+    }
+
+    public IEnumerable<string> GetHeldItems()
+    {
+        return heldItems;
     }
 
     private void SetIconVisible(string itemName, bool visible)

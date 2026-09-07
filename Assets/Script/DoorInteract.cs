@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class DoorInteract : MonoBehaviour, IInteractable
 {
-    [Header("Door Parent")]
-    public GameObject doorIdentity;
+    [Header("Unique ID - type a distinct name per door")]
+    public string doorId;
 
     [Header("Door Visuals")]
     public GameObject doorClosed;
@@ -13,17 +13,17 @@ public class DoorInteract : MonoBehaviour, IInteractable
     [Header("Requirement (leave blank for no requirement)")]
     public string requiredItem = "";
 
-    private static HashSet<int> openedDoors = new HashSet<int>();
+    private static HashSet<string> openedDoors = new HashSet<string>();
 
     void Start()
     {
-        if (doorIdentity != null && openedDoors.Contains(doorIdentity.GetInstanceID()))
+        if (!string.IsNullOrEmpty(doorId) && openedDoors.Contains(doorId))
             ApplyOpenState();
     }
 
     public void Interact()
     {
-        if (doorIdentity != null && openedDoors.Contains(doorIdentity.GetInstanceID()))
+        if (!string.IsNullOrEmpty(doorId) && openedDoors.Contains(doorId))
             return;
 
         bool hasRequirement = string.IsNullOrEmpty(requiredItem) || Inventory.Instance.HasItem(requiredItem);
@@ -43,8 +43,16 @@ public class DoorInteract : MonoBehaviour, IInteractable
         if (!string.IsNullOrEmpty(requiredItem))
             Inventory.Instance.RemoveItem(requiredItem);
 
-        if (doorIdentity != null)
-            openedDoors.Add(doorIdentity.GetInstanceID());
+        if (!string.IsNullOrEmpty(doorId))
+            openedDoors.Add(doorId);
+
+        ApplyOpenState();
+    }
+
+        public void ForceOpen()
+    {
+        if (!string.IsNullOrEmpty(doorId))
+            openedDoors.Add(doorId);
 
         ApplyOpenState();
     }

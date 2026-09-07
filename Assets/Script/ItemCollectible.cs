@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class ItemCollectible : MonoBehaviour, IInteractable
 {
-    [Header("Item Granted")]
-    public string itemName; 
+    public string itemName;
+
+    [Header("Optional: trigger a checkpoint on pickup")]
+    public bool triggersCheckpoint = false;
+    public Transform checkpointRespawnPoint; // if empty, uses this item's own position
 
     private bool collected = false;
 
@@ -14,6 +17,12 @@ public class ItemCollectible : MonoBehaviour, IInteractable
         Inventory.Instance.AddItem(itemName);
         collected = true;
 
-        gameObject.SetActive(false); 
+        if (triggersCheckpoint)
+        {
+            Vector3 spawnPos = checkpointRespawnPoint != null ? checkpointRespawnPoint.position : transform.position;
+            CheckpointManager.Instance.SetCheckpoint(spawnPos, Inventory.Instance.GetHeldItems());
+        }
+
+        gameObject.SetActive(false);
     }
 }

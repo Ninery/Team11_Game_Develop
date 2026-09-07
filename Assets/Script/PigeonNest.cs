@@ -1,8 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PigeonNest : MonoBehaviour, IInteractable
 {
+    [Header("Unique ID for this nest")]
+    public string nestId = "PigeonNest1";
+
     [Header("Dialogue (before seed bag placed)")]
     public string firstLine = "hm a crowbar, i wonder if it is useful";
     public string secondLine = "i cant reach it";
@@ -28,7 +32,29 @@ public class PigeonNest : MonoBehaviour, IInteractable
     private static readonly int FlyHash = Animator.StringToHash("Fly");
     private static readonly int IsEatingHash = Animator.StringToHash("IsEating");
 
+    private static HashSet<string> triggeredNests = new HashSet<string>();
+
     private bool triggered = false;
+
+    void Start()
+    {
+        if (triggeredNests.Contains(nestId))
+        {
+            triggered = true;
+
+            if (placedSeedBag != null)
+                placedSeedBag.SetActive(true);
+
+            pigeonTransform.position = pigeonLandSpot.position;
+            pigeonAnim.SetBool(IsEatingHash, true);
+
+            crowbarRb.position = crowbarLandSpot.position;
+            crowbarRb.bodyType = RigidbodyType2D.Kinematic;
+            crowbarRb.gravityScale = 0f;
+
+            GetComponent<Collider2D>().enabled = false;
+        }
+    }
 
     public void Interact()
     {
@@ -37,6 +63,8 @@ public class PigeonNest : MonoBehaviour, IInteractable
         if (Inventory.Instance.HasItem(requiredItem))
         {
             triggered = true;
+            triggeredNests.Add(nestId);
+
             Inventory.Instance.RemoveItem(requiredItem);
             GetComponent<Collider2D>().enabled = false;
             StartCoroutine(TriggerSequence());

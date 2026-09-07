@@ -83,4 +83,9 @@ public class LightsOutPuzzle : MonoBehaviour
             buttonOverlays[i].color = c;
         }
     }
+
+    public void ResetButtons()
+    {
+        LightsOutManager.Instance.ResetToStartingPattern();
+    }
 }

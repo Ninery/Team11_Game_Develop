@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -6,6 +7,9 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class CatCollectible : MonoBehaviour, IClickable, IHoverable
 {
+    [Header("Unique ID - type a distinct name per cat")]
+    public string catId;
+
     [Header("Run Away")]
     public float jumpForce = 4f;
     public float runSpeed = 3f;
@@ -18,6 +22,7 @@ public class CatCollectible : MonoBehaviour, IClickable, IHoverable
 
     private static readonly int JumpHash = Animator.StringToHash("Jump");
     private static readonly int IsRunningHash = Animator.StringToHash("IsRunning");
+    private static HashSet<string> collectedCats = new HashSet<string>();
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -32,6 +37,14 @@ public class CatCollectible : MonoBehaviour, IClickable, IHoverable
         rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
+    void Start()
+    {
+        if (!string.IsNullOrEmpty(catId) && collectedCats.Contains(catId))
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     public void OnHoverEnter() { }
 
     public void OnHoverExit() { }
@@ -41,9 +54,8 @@ public class CatCollectible : MonoBehaviour, IClickable, IHoverable
         if (collected) return;
         collected = true;
 
-        // NOT disabling the collider here anymore - it still needs to
-        // physically collide with the ground while falling. The
-        // "collected" check above already stops repeat clicks.
+        if (!string.IsNullOrEmpty(catId))
+            collectedCats.Add(catId);
 
         if (countsTowardScore)
             CatManager.Instance.CollectCat();
