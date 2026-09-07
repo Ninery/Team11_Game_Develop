@@ -62,4 +62,17 @@ public class LightsOutManager : MonoBehaviour
             if (!state) return false;
         return true;
     }
+<<<<<<< Updated upstream
+=======
+
+    public void ResetToStartingPattern()
+    {
+        if (doorOpen) return;
+
+        for (int i = 0; i < GridSize; i++)
+            buttonStates[i] = startingPattern[i];
+
+        OnStateChanged?.Invoke();
+    }
+>>>>>>> Stashed changes
 }

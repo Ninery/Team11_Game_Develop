@@ -10,10 +10,14 @@ public class Player : MonoBehaviour
     [Header("Interaction")]
     public GameObject bubbleE;
 
+    [Header("Flashlight")]
+    public Transform flashlightTransform;
+
     [Header("State")]
     public bool canMove = true;
     public bool suppressBubbleControl = false;
-    public bool isHidden = false; // true while hiding in a cabinet or similar spot
+    public bool isHidden = false;
+    public bool isInvulnerable = false;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -28,6 +32,12 @@ public class Player : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         bubbleE.SetActive(false);
+
+        if (CheckpointManager.Instance != null &&
+            CheckpointManager.Instance.TryGetCheckpoint(out Vector3 savedPosition, out _))
+        {
+            transform.position = savedPosition;
+        }
     }
 
     void Update()
@@ -42,7 +52,16 @@ public class Player : MonoBehaviour
                 moveInput = 1f;
 
             if (moveInput != 0)
+            {
                 sr.flipX = moveInput < 0;
+
+                if (flashlightTransform != null)
+                {
+                    Vector3 scale = flashlightTransform.localScale;
+                    scale.x = moveInput < 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+                    flashlightTransform.localScale = scale;
+                }
+            }
         }
 
         anim.SetBool("IsWalking", moveInput != 0);
