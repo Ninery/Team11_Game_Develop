@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32ae149212cb654db89f9820ceabc5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CatCollectible
+  catId: 
   jumpForce: 1
   runSpeed: 0.5
   gravityScale: 1
@@ -3150,6 +3151,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621871627}
   m_CullTransparentMesh: 1
+--- !u!1001 &674749789
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2217481436944851087, guid: 8df11d757d8612d4e9acc97ddf5d9ac9, type: 3}
+      propertyPath: m_Name
+      value: PauseSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445918372345765970, guid: 8df11d757d8612d4e9acc97ddf5d9ac9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.49847
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445918372345765970, guid: 8df11d757d8612d4e9acc97ddf5d9ac9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.65985
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445918372345765970, guid: 8df11d757d8612d4e9acc97ddf5d9ac9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445918372345765970, guid: 8df11d757d8612d4e9acc97ddf5d9ac9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445918372345765970, guid: 8df11d757d8612d4e9acc97ddf5d9ac9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445918372345765970, guid: 8df11d757d8612d4e9acc97ddf5d9ac9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445918372345765970, guid: 8df11d757d8612d4e9acc97ddf5d9ac9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445918372345765970, guid: 8df11d757d8612d4e9acc97ddf5d9ac9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445918372345765970, guid: 8df11d757d8612d4e9acc97ddf5d9ac9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445918372345765970, guid: 8df11d757d8612d4e9acc97ddf5d9ac9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8df11d757d8612d4e9acc97ddf5d9ac9, type: 3}
 --- !u!1 &716338826
 GameObject:
   m_ObjectHideFlags: 0
@@ -4059,9 +4117,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   moveSpeed: 1
   bubbleE: {fileID: 2100671177}
+  flashlightTransform: {fileID: 0}
   canMove: 1
   suppressBubbleControl: 0
   isHidden: 0
+  isInvulnerable: 0
 --- !u!114 &833037683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5909,6 +5969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32ae149212cb654db89f9820ceabc5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CatCollectible
+  catId: 
   jumpForce: 1
   runSpeed: 0.5
   gravityScale: 1
@@ -6178,6 +6239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32ae149212cb654db89f9820ceabc5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CatCollectible
+  catId: 
   jumpForce: 1
   runSpeed: 0.5
   gravityScale: 1
@@ -7270,6 +7332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   message: My shortcut home is blocked. I need to go another way
+  secondMessage: 
 --- !u!212 &1436869174
 SpriteRenderer:
   serializedVersion: 2
@@ -7469,6 +7532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   message: My shortcut home is blocked. I need to go another way
+  secondMessage: 
 --- !u!61 &1461524451
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11059,7 +11123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef904c7fcda91642a5a58dd78614d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorInteract
-  doorIdentity: {fileID: 2022447260}
+  doorId: 
   doorClosed: {fileID: 1710472942}
   doorOpen: {fileID: 253881432}
   requiredItem: 
@@ -11850,3 +11914,4 @@ SceneRoots:
   - {fileID: 27057319}
   - {fileID: 1205220744}
   - {fileID: 1163623611}
+  - {fileID: 674749789}

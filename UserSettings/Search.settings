@@ -9,9 +9,10 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.66F56946" = ""
-	"OpenInspectorPreview.66F56946" = "0"
-	"currentGroup.66F56946" = "all"
+	"picker_window_position_offset.00000000" = "34;324;320;550"
+	"picker_visibility_flags.00000000" = "0"
+	"picker_item_size.00000000" = "1"
+	"picker_inspector.00000000" = "0"
 }
 providers = {
 	asset = {
@@ -44,17 +45,17 @@ providers = {
 		priority = 90
 		defaultAction = null
 	}
-	store = {
-		active = false
-		priority = 100
-		defaultAction = null
-	}
 	profilermarkers = {
 		active = false
 		priority = 100
 		defaultAction = null
 	}
 	performance = {
+		active = false
+		priority = 100
+		defaultAction = null
+	}
+	store = {
 		active = false
 		priority = 100
 		defaultAction = null
