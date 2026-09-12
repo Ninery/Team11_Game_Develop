@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
+
 public class LightsOutPuzzle : MonoBehaviour
 {
     [Header("Green overlay Images, index 0-8 matching grid order")]
@@ -15,6 +16,10 @@ public class LightsOutPuzzle : MonoBehaviour
 
     [Header("Auto Close")]
     public float autoCloseDelay = 2f;
+    
+    [Header("Audio Source")]
+    public AudioSource clickAudio;
+    public AudioSource correctAudio;
 
     private Player currentPlayer;
     private Coroutine autoCloseCoroutine;
@@ -46,6 +51,9 @@ public class LightsOutPuzzle : MonoBehaviour
     public void PressButton(int index)
     {
         LightsOutManager.Instance.ToggleButton(index);
+
+        if (clickAudio != null && clickAudio.clip != null)
+            clickAudio.PlayOneShot(clickAudio.clip);
     }
 
     public void ClosePuzzle()
@@ -59,6 +67,10 @@ public class LightsOutPuzzle : MonoBehaviour
     private void HandleSolved()
     {
         UpdateStatusText();
+
+        if (correctAudio != null && correctAudio.clip != null)
+            correctAudio.PlayOneShot(correctAudio.clip);
+
         autoCloseCoroutine = StartCoroutine(AutoCloseAfterDelay());
     }
 

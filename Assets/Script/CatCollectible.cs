@@ -20,9 +20,10 @@ public class CatCollectible : MonoBehaviour, IClickable, IHoverable
     [Header("Scoring")]
     public bool countsTowardScore = true;
 
+    public AudioSource audioSource;
+
     private static readonly int JumpHash = Animator.StringToHash("Jump");
     private static readonly int IsRunningHash = Animator.StringToHash("IsRunning");
-    private static HashSet<string> collectedCats = new HashSet<string>();
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -39,7 +40,8 @@ public class CatCollectible : MonoBehaviour, IClickable, IHoverable
 
     void Start()
     {
-        if (!string.IsNullOrEmpty(catId) && collectedCats.Contains(catId))
+        if (CatManager.Instance != null &&
+            CatManager.Instance.HasCollectedCat(catId))
         {
             gameObject.SetActive(false);
         }
@@ -52,13 +54,16 @@ public class CatCollectible : MonoBehaviour, IClickable, IHoverable
     public void OnClick()
     {
         if (collected) return;
+
         collected = true;
 
-        if (!string.IsNullOrEmpty(catId))
-            collectedCats.Add(catId);
+        if (audioSource != null)
+            audioSource.PlayOneShot(audioSource.clip);
 
-        if (countsTowardScore)
-            CatManager.Instance.CollectCat();
+        if (CatManager.Instance != null)
+        {
+            CatManager.Instance.CollectCat(catId);
+        }
 
         StartCoroutine(RunAwaySequence());
     }

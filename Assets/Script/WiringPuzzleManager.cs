@@ -15,6 +15,9 @@ public class WiringPuzzleManager : MonoBehaviour
     public GameObject wallNote;
     public float autoCloseDelay = 2f;
 
+    [Header("Sound")]
+    public AudioSource wireConnectAudio;
+
     [Header("Key/Door (should already be past this point by checkpoint)")]
     public DoorInteract keyDoor;
     public GameObject keyCollectible;
@@ -59,6 +62,9 @@ public class WiringPuzzleManager : MonoBehaviour
     {
         solvedCount++;
 
+        if (wireConnectAudio != null && wireConnectAudio.clip != null)
+            wireConnectAudio.PlayOneShot(wireConnectAudio.clip);
+
         if (solvedCount >= cogs.Length)
         {
             OnPuzzleComplete();
@@ -72,6 +78,9 @@ public class WiringPuzzleManager : MonoBehaviour
 
         if (generatorInteract != null)
             generatorInteract.DisableCollider();
+            
+        if (generatorInteract != null)
+            generatorInteract.PlayLightOnSound();
 
         if (checkpointRespawnPoint != null && CheckpointManager.Instance != null)
         {

@@ -15,6 +15,10 @@ public class BasementMonsterPatrol : MonoBehaviour
     public float stunDuration = 5f;
     public TMP_Text stunCountdownText;
 
+    [Header("Audio Sounds")]
+    public AudioSource footstepAudioSource;
+    public AudioSource deathAudioSource;
+
     private Rigidbody2D rb;
     private Animator anim;
     private bool isStunned = false;
@@ -27,6 +31,9 @@ public class BasementMonsterPatrol : MonoBehaviour
 
         if (stunCountdownText != null)
             stunCountdownText.gameObject.SetActive(false);
+
+        if (footstepAudioSource != null)
+            footstepAudioSource.Stop();
 
         if (boundaryPoint != null)
         {
@@ -41,6 +48,10 @@ public class BasementMonsterPatrol : MonoBehaviour
         if (isStunned || !FlashlightPickup.HasFlashlight || player == null)
         {
             anim.SetBool("IsWalking", false);
+
+            if (footstepAudioSource != null)
+                footstepAudioSource.Stop();
+
             return;
         }
 
@@ -49,10 +60,22 @@ public class BasementMonsterPatrol : MonoBehaviour
         if (WouldCrossBoundary(direction))
         {
             anim.SetBool("IsWalking", false);
+
+            if (footstepAudioSource != null)
+                footstepAudioSource.Stop();
+
             return;
         }
 
         anim.SetBool("IsWalking", true);
+
+        if (footstepAudioSource != null &&
+            footstepAudioSource.clip != null &&
+            !footstepAudioSource.isPlaying)
+        {
+            footstepAudioSource.Play();
+        }
+
         UpdateFacing(direction);
     }
 
@@ -78,7 +101,7 @@ public class BasementMonsterPatrol : MonoBehaviour
     private bool WouldCrossBoundary(float direction)
     {
         if (boundaryPoint == null) return false;
-        if (direction != blockedDirection) return false; // retreating is always allowed
+        if (direction != blockedDirection) return false;
 
         return (blockedDirection > 0f && transform.position.x >= boundaryPoint.position.x) ||
                (blockedDirection < 0f && transform.position.x <= boundaryPoint.position.x);
@@ -101,6 +124,10 @@ public class BasementMonsterPatrol : MonoBehaviour
         isStunned = true;
         rb.linearVelocity = Vector2.zero;
         anim.SetBool("IsWalking", false);
+
+        if (footstepAudioSource != null)
+            footstepAudioSource.Stop();
+
         anim.Play("BasementMonsterStun", 0, 0f);
 
         float remaining = stunDuration;
@@ -149,6 +176,12 @@ public class BasementMonsterPatrol : MonoBehaviour
 
     public void KillPlayer()
     {
+        if (footstepAudioSource != null)
+            footstepAudioSource.Stop();
+            
+        if (deathAudioSource != null && deathAudioSource.clip != null)
+            deathAudioSource.PlayOneShot(deathAudioSource.clip);
+
         CatManager.Instance.ResetSessionProgress();
         DeathScreen.Instance.PlayDeathSequence();
     }

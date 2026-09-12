@@ -8,6 +8,8 @@ public class MainMenuCat : MonoBehaviour, IClickable, IHoverable
     public float delayBeforeLoad = 1f;
     public float runOffSpeed = 3f;
 
+    public AudioSource audioSource;
+
     private bool clicked = false;
 
     public void OnHoverEnter() { }
@@ -17,6 +19,9 @@ public class MainMenuCat : MonoBehaviour, IClickable, IHoverable
     {
         if (clicked) return;
         clicked = true;
+
+        if (audioSource != null)
+            audioSource.PlayOneShot(audioSource.clip);
 
         GetComponent<Collider2D>().enabled = false;
 

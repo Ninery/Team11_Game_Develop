@@ -13,6 +13,10 @@ public class DoorInteract : MonoBehaviour, IInteractable
     [Header("Requirement (leave blank for no requirement)")]
     public string requiredItem = "";
 
+    [Header("Sound")]
+    public AudioSource lockedAudioSource;
+    public AudioSource unlockAudioSource;
+
     private static HashSet<string> openedDoors = new HashSet<string>();
 
     void Start()
@@ -34,8 +38,16 @@ public class DoorInteract : MonoBehaviour, IInteractable
         }
         else
         {
+            if (lockedAudioSource != null && lockedAudioSource.clip != null)
+                lockedAudioSource.PlayOneShot(lockedAudioSource.clip);
+
             DialogueManager.Instance.ShowDialogue("Locked.");
         }
+    }
+    
+    public static void ResetOpenedDoors()
+    {
+        openedDoors.Clear();
     }
 
     private void UnlockDoor()
@@ -45,6 +57,9 @@ public class DoorInteract : MonoBehaviour, IInteractable
 
         if (!string.IsNullOrEmpty(doorId))
             openedDoors.Add(doorId);
+
+        if (unlockAudioSource != null && unlockAudioSource.clip != null)
+            unlockAudioSource.PlayOneShot(unlockAudioSource.clip);
 
         ApplyOpenState();
     }

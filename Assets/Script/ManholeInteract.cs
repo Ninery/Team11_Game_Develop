@@ -16,6 +16,10 @@ public class ManholeInteract : MonoBehaviour, IInteractable
 
     [Header("Teleport")]
     public string nextSceneName;
+    
+    [Header("Audio Source")]
+    public AudioSource audioSource;
+
 
     private bool hasHeardCrowbarDialogue = false;
     private bool isBusy = false;
@@ -38,8 +42,17 @@ public class ManholeInteract : MonoBehaviour, IInteractable
         }
         else
         {
-            SceneTransition.Instance.GoToScene(nextSceneName);
+            if (audioSource != null && audioSource.clip != null)
+                audioSource.PlayOneShot(audioSource.clip);
+
+            StartCoroutine(LoadNextSceneAfterDelay());
         }
+    }
+    
+    private IEnumerator LoadNextSceneAfterDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneTransition.Instance.GoToScene(nextSceneName);
     }
 
     private IEnumerator PlayDialogueSequence(string line1, string line2, System.Action onComplete)

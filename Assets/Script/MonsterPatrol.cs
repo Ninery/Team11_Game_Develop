@@ -29,6 +29,9 @@ public class MonsterPatrol : MonoBehaviour
     public float searchArriveDistance = 0.3f;
     public GameObject exclamationIcon;
 
+    [Header("Death Sound")]
+    public AudioSource deathAudioSource;
+
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -292,6 +295,9 @@ public class MonsterPatrol : MonoBehaviour
 
     public void KillPlayer()
     {
+        if (deathAudioSource != null && deathAudioSource.clip != null)
+            deathAudioSource.PlayOneShot(deathAudioSource.clip);
+
         CatManager.Instance.ResetSessionProgress();
         DeathScreen.Instance.PlayDeathSequence();
     }

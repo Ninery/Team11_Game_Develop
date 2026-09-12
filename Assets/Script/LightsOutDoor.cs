@@ -7,6 +7,9 @@ public class LightsOutDoor : MonoBehaviour, IInteractable
     public GameObject puzzleCanvas;
     public GameObject shedOverlay;
 
+    [Header("Sound")]
+    public AudioSource doorOpenAudio;
+
     void Start()
     {
         ApplyState(LightsOutManager.Instance.doorOpen);
@@ -26,7 +29,13 @@ public class LightsOutDoor : MonoBehaviour, IInteractable
         puzzleCanvas.SetActive(true);
     }
 
-    private void HandleSolved() => ApplyState(true);
+    private void HandleSolved()
+    {
+        ApplyState(true);
+
+        if (doorOpenAudio != null && doorOpenAudio.clip != null)
+            doorOpenAudio.PlayOneShot(doorOpenAudio.clip);
+    }
 
     private void ApplyState(bool isOpen)
     {

@@ -77,13 +77,21 @@ public class PauseMenu : MonoBehaviour
             pauseButton.SetActive(true);
     }
 
-    // Hook this up to your "Main Menu" button's OnClick()
-    public void ReturnToMainMenu()
+    // Restart from the latest checkpoint
+    public void RestartFromCheckpoint()
     {
-        // Restore timescale BEFORE loading, same reasoning as DeathScreen --
-        // otherwise the next scene can start frozen if timeScale is still 0.
         Time.timeScale = 1f;
         isPaused = false;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // Return to StartMenu
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+
         SceneManager.LoadScene(mainMenuSceneName);
     }
 }

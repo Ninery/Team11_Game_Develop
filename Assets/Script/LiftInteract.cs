@@ -18,6 +18,9 @@ public class LiftInteract : MonoBehaviour, IInteractable
     [Header("Interior")]
     public GameObject liftInterior;
 
+    [Header("Sound")]
+    public AudioSource liftRunAudio;
+
     public bool DoorOpened => DoorHasOpened;
     private bool isAnimating = false;
 
@@ -56,6 +59,9 @@ public class LiftInteract : MonoBehaviour, IInteractable
         isAnimating = true;
 
         if (liftInterior != null) liftInterior.SetActive(true);
+
+        if (liftRunAudio != null && liftRunAudio.clip != null)
+            liftRunAudio.PlayOneShot(liftRunAudio.clip);
 
         liftAnim.speed = 1f;
         liftAnim.Play(doorStateName, 0, 0f);

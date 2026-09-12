@@ -12,18 +12,33 @@ public class ChaseMonster : MonoBehaviour
     [Header("UI")]
     public GameObject runText;
 
-    [Header("Kill Detection (the box trigger collider, not the small ground one)")]
+    [Header("Kill Detection (the box trigger, not the small ground one)")]
     public Collider2D killTrigger;
+
+    [Header("Footstep Sound")]
+    public AudioSource footstepAudioSource;
+    public AudioClip runClip;
+
+    [Header("Chase BGM")]
+    public AudioClip chaseBGM;
 
     private Rigidbody2D rb;
     private Animator anim;
     private bool isChasing = false;
+
+    private AudioClip normalBGM;
 
     void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         isChasing = false;
+
+        if (GlobalBGM.Instance != null &&
+            GlobalBGM.Instance.audioSource != null)
+        {
+            normalBGM = GlobalBGM.Instance.audioSource.clip;
+        }
 
         UpdateFacing(1f);
 
@@ -33,13 +48,45 @@ public class ChaseMonster : MonoBehaviour
         if (killTrigger != null)
             killTrigger.enabled = true;
 
+        if (footstepAudioSource != null)
+        {
+            footstepAudioSource.Stop();
+            footstepAudioSource.clip = runClip;
+        }
+
         StartCoroutine(StartChaseAfterDelay());
     }
 
     private IEnumerator StartChaseAfterDelay()
     {
         yield return new WaitForSeconds(delayBeforeChase);
+
         isChasing = true;
+
+        if (player != null)
+        {
+            Player playerScript = player.GetComponent<Player>();
+
+            if (playerScript != null)
+                playerScript.SetChaseAudio(true);
+        }
+
+        if (footstepAudioSource != null &&
+            footstepAudioSource.enabled &&
+            footstepAudioSource.gameObject.activeInHierarchy &&
+            footstepAudioSource.clip != null)
+        {
+            footstepAudioSource.Play();
+        }
+
+        if (GlobalBGM.Instance != null &&
+            GlobalBGM.Instance.audioSource != null &&
+            chaseBGM != null)
+        {
+            GlobalBGM.Instance.audioSource.Stop();
+            GlobalBGM.Instance.audioSource.clip = chaseBGM;
+            GlobalBGM.Instance.audioSource.Play();
+        }
     }
 
     void Update()
@@ -54,12 +101,17 @@ public class ChaseMonster : MonoBehaviour
     {
         if (!isChasing || player == null)
         {
-            if (rb != null) rb.linearVelocity = Vector2.zero;
-            if (anim != null) anim.SetBool("IsWalking", false);
+            if (rb != null)
+                rb.linearVelocity = Vector2.zero;
+
+            if (anim != null)
+                anim.SetBool("IsWalking", false);
+
             return;
         }
 
-        if (anim != null) anim.SetBool("IsWalking", true);
+        if (anim != null)
+            anim.SetBool("IsWalking", true);
 
         float direction = player.position.x > transform.position.x ? 1f : -1f;
         rb.linearVelocity = new Vector2(direction * chaseSpeed, 0f);
@@ -82,6 +134,19 @@ public class ChaseMonster : MonoBehaviour
         if (anim != null)
             anim.SetBool("IsWalking", false);
 
+        if (footstepAudioSource != null)
+            footstepAudioSource.Stop();
+
+        if (player != null)
+        {
+            Player playerScript = player.GetComponent<Player>();
+
+            if (playerScript != null)
+                playerScript.SetChaseAudio(false);
+        }
+
+        RestoreNormalBGM();
+
         if (runText != null)
             runText.SetActive(false);
     }
@@ -97,6 +162,7 @@ public class ChaseMonster : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         Player p = other.GetComponent<Player>();
+
         if (p != null && p.isInvulnerable) return;
 
         KillPlayer();
@@ -104,7 +170,24 @@ public class ChaseMonster : MonoBehaviour
 
     public void KillPlayer()
     {
+        if (footstepAudioSource != null)
+            footstepAudioSource.Stop();
+
+        RestoreNormalBGM();
+
         CatManager.Instance.ResetSessionProgress();
         DeathScreen.Instance.PlayDeathSequence();
+    }
+
+    private void RestoreNormalBGM()
+    {
+        if (GlobalBGM.Instance != null &&
+            GlobalBGM.Instance.audioSource != null &&
+            normalBGM != null)
+        {
+            GlobalBGM.Instance.audioSource.Stop();
+            GlobalBGM.Instance.audioSource.clip = normalBGM;
+            GlobalBGM.Instance.audioSource.Play();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CatManager : MonoBehaviour
@@ -6,8 +7,8 @@ public class CatManager : MonoBehaviour
 
     public int totalCats = 9;
 
-    private int committedCats = 0; // locked in, survives death
-    private int sessionCats = 0;   // collected in current scene, wiped on death
+    // Permanently collected cats
+    private HashSet<string> collectedCatIds = new HashSet<string>();
 
     void Awake()
     {
@@ -22,27 +23,46 @@ public class CatManager : MonoBehaviour
         }
     }
 
-    public void CollectCat()
+    public void CollectCat(string catId)
     {
-        sessionCats++;
-        CatPopup.Instance.ShowPopup(committedCats + sessionCats, totalCats);
+        if (string.IsNullOrEmpty(catId))
+            return;
+
+        // Only count the cat the first time it is collected
+        if (collectedCatIds.Add(catId))
+        {
+            if (CatPopup.Instance != null)
+            {
+                CatPopup.Instance.ShowPopup(
+                    collectedCatIds.Count,
+                    totalCats
+                );
+            }
+        }
     }
 
-    // call this right before loading the NEXT scene (successful progression)
-    public void CommitSessionProgress()
+    public bool HasCollectedCat(string catId)
     {
-        committedCats += sessionCats;
-        sessionCats = 0;
-    }
-
-    // call this right before reloading the CURRENT scene (player died)
-    public void ResetSessionProgress()
-    {
-        sessionCats = 0;
+        return !string.IsNullOrEmpty(catId) &&
+               collectedCatIds.Contains(catId);
     }
 
     public int GetTotalCollected()
     {
-        return committedCats + sessionCats;
+        return collectedCatIds.Count;
+    }
+
+    // Kept for MonsterPatrol compatibility.
+    // Collected cats are now permanent, so death does NOT reset them.
+    public void ResetSessionProgress()
+    {
+        // Do nothing
+    }
+
+    // Kept in case other scripts still call it.
+    // There is no separate session progress anymore.
+    public void CommitSessionProgress()
+    {
+        // Do nothing
     }
 }

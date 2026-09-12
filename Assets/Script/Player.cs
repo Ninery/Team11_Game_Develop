@@ -19,6 +19,16 @@ public class Player : MonoBehaviour
     public bool isHidden = false;
     public bool isInvulnerable = false;
 
+    [Header("Footstep Sound")]
+    public AudioSource footstepAudioSource;
+    public AudioClip runClip;
+
+    [Header("Landing Sound")]
+    public AudioSource landingAudioSource;
+    private bool hasPlayedLandingSound = false;
+
+    private AudioClip walkClip;
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator anim;
@@ -32,6 +42,9 @@ public class Player : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         bubbleE.SetActive(false);
+
+        if (footstepAudioSource != null)
+            walkClip = footstepAudioSource.clip;
 
         if (CheckpointManager.Instance != null &&
             CheckpointManager.Instance.TryGetCheckpoint(out Vector3 savedPosition, out _))
@@ -66,6 +79,16 @@ public class Player : MonoBehaviour
 
         anim.SetBool("IsWalking", moveInput != 0);
 
+        if (moveInput != 0 && canMove)
+        {
+            if (footstepAudioSource != null &&
+                footstepAudioSource.clip != null &&
+                !footstepAudioSource.isPlaying)
+            {
+                footstepAudioSource.PlayOneShot(footstepAudioSource.clip);
+            }
+        }
+
         if (!suppressBubbleControl)
             bubbleE.SetActive(nearby.Count > 0 && canMove);
 
@@ -83,6 +106,7 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         IInteractable interactable = other.GetComponent<IInteractable>();
+
         if (interactable != null)
             nearby.Add(interactable);
     }
@@ -90,7 +114,32 @@ public class Player : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         IInteractable interactable = other.GetComponent<IInteractable>();
+
         if (interactable != null)
             nearby.Remove(interactable);
+    }
+
+    public void SetChaseAudio(bool chasing)
+    {
+        if (footstepAudioSource == null)
+            return;
+
+        footstepAudioSource.Stop();
+
+        if (chasing)
+            footstepAudioSource.clip = runClip;
+        else
+            footstepAudioSource.clip = walkClip;
+    }
+
+    public void PlayLandingSound()
+    {
+        if (hasPlayedLandingSound) return;
+
+        if (landingAudioSource != null && landingAudioSource.clip != null)
+        {
+            landingAudioSource.PlayOneShot(landingAudioSource.clip);
+            hasPlayedLandingSound = true;
+        }
     }
 }

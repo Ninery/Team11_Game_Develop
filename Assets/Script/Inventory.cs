@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
 
     public List<InventorySlot> slots;
+    public AudioSource audioSource;
 
     private HashSet<string> heldItems = new HashSet<string>();
 
@@ -36,14 +37,22 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(string itemName)
     {
-        heldItems.Add(itemName);
-        SetIconVisible(itemName, true);
+        if (heldItems.Add(itemName))
+        {
+            SetIconVisible(itemName, true);
+
+            if (audioSource != null && audioSource.clip != null)
+                audioSource.PlayOneShot(audioSource.clip);
+        }
     }
 
     public void RemoveItem(string itemName)
     {
         heldItems.Remove(itemName);
         SetIconVisible(itemName, false);
+
+        if (audioSource != null)
+            audioSource.PlayOneShot(audioSource.clip);
     }
 
     public bool HasItem(string itemName)

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using TMPro;
+using System.Collections;
 
 public class KeypadPuzzle : MonoBehaviour
 {
@@ -14,6 +15,14 @@ public class KeypadPuzzle : MonoBehaviour
 
     [Header("On Success")]
     public UnityEvent onSolved;
+
+    [Header("Auto Close")]
+    public float autoCloseDelay = 1f;
+
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioSource correctAudioSource;
+    public AudioSource wrongAudioSource;
 
     private string enteredCode = "";
     private bool hasEnteredAnything = false;
@@ -34,6 +43,9 @@ public class KeypadPuzzle : MonoBehaviour
     public void PressDigit(string digit)
     {
         if (enteredCode.Length >= maxDigits) return;
+
+        if (audioSource != null)
+            audioSource.PlayOneShot(audioSource.clip);
 
         hasEnteredAnything = true;
         placeholderText.SetActive(false);
@@ -58,14 +70,27 @@ public class KeypadPuzzle : MonoBehaviour
     {
         if (enteredCode == correctCode)
         {
+            if (correctAudioSource != null)
+                correctAudioSource.PlayOneShot(correctAudioSource.clip);
+
             onSolved.Invoke();
-            ClosePuzzle();
+
+            StartCoroutine(AutoCloseAfterDelay());
         }
         else
         {
+            if (wrongAudioSource != null)
+                wrongAudioSource.PlayOneShot(wrongAudioSource.clip);
+
             enteredCode = "";
             codeDisplay.text = "";
         }
+    }
+
+    private IEnumerator AutoCloseAfterDelay()
+    {
+        yield return new WaitForSeconds(autoCloseDelay);
+        ClosePuzzle();
     }
 
     public void ClosePuzzle()

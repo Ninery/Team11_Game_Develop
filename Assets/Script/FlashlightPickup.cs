@@ -11,6 +11,9 @@ public class FlashlightPickup : MonoBehaviour, IInteractable
     public GameObject blockerLeft;
     public GameObject blockerRight;
 
+    [Header("Audio")]
+    public AudioSource collectSound;
+
     void Start()
     {
         if (HasFlashlight)
@@ -22,6 +25,10 @@ public class FlashlightPickup : MonoBehaviour, IInteractable
         if (HasFlashlight) return;
 
         HasFlashlight = true;
+
+        if (collectSound != null && collectSound.clip != null)
+            collectSound.PlayOneShot(collectSound.clip);
+
         ApplyCollectedState();
     }
 

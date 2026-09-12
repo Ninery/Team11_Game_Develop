@@ -8,6 +8,7 @@ public class HidingSpot : MonoBehaviour, IInteractable
     public SpriteRenderer playerSprite;
     public Transform hideSpot;
     public Transform frontSpot;
+    public AudioSource audioSource;
 
     public bool isHiding = false;
 
@@ -34,6 +35,7 @@ public class HidingSpot : MonoBehaviour, IInteractable
     {
         if (!isHiding)
         {
+            audioSource.Play();
             StartHiding();
         }
     }
@@ -50,6 +52,7 @@ public class HidingSpot : MonoBehaviour, IInteractable
 
             if (Keyboard.current.eKey.wasPressedThisFrame)
             {
+                audioSource.Play();
                 StopHiding();
             }
         }

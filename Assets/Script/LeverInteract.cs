@@ -6,6 +6,9 @@ public class LeverInteract : MonoBehaviour, IInteractable
     public Animator leverAnim;
     public string leverStateName = "LeverPull";
 
+    [Header("Sound")]
+    public AudioSource leverAudioSource;
+
     private bool isDown = false;
     private bool isAnimating = false;
 
@@ -19,6 +22,9 @@ public class LeverInteract : MonoBehaviour, IInteractable
         if (isAnimating) return;
 
         isDown = !isDown;
+
+        if (leverAudioSource != null && leverAudioSource.clip != null)
+            leverAudioSource.PlayOneShot(leverAudioSource.clip);
 
         if (isDown)
         {

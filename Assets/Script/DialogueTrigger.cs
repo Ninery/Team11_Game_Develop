@@ -8,8 +8,14 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
     [Header("Optional second line (leave blank to skip)")]
     public string secondMessage = "";
 
+    [Header("Sound")]
+    public AudioSource audioSource;
+
     public void Interact()
     {
+        if (audioSource != null && audioSource.clip != null)
+            audioSource.PlayOneShot(audioSource.clip);
+
         if (string.IsNullOrEmpty(secondMessage))
         {
             DialogueManager.Instance.ShowDialogue(message);

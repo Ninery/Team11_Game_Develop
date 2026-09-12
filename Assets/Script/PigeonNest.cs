@@ -29,6 +29,9 @@ public class PigeonNest : MonoBehaviour, IInteractable
     public Transform crowbarLandSpot;
     public float crowbarGravityScale = 3f;
 
+    [Header("Sound")]
+    public AudioSource crowbarLandAudio;
+
     private static readonly int FlyHash = Animator.StringToHash("Fly");
     private static readonly int IsEatingHash = Animator.StringToHash("IsEating");
 
@@ -54,6 +57,11 @@ public class PigeonNest : MonoBehaviour, IInteractable
 
             GetComponent<Collider2D>().enabled = false;
         }
+    }
+    
+    public static void ResetTriggeredNests()
+    {
+        triggeredNests.Clear();
     }
 
     public void Interact()
@@ -102,6 +110,9 @@ public class PigeonNest : MonoBehaviour, IInteractable
         crowbarRb.gravityScale = 0f;
         crowbarRb.bodyType = RigidbodyType2D.Kinematic;
 
+        if (crowbarLandAudio != null && crowbarLandAudio.clip != null)
+            crowbarLandAudio.PlayOneShot(crowbarLandAudio.clip);
+
         crowbarPickupCollider.enabled = true;
     }
 
@@ -120,4 +131,5 @@ public class PigeonNest : MonoBehaviour, IInteractable
         pigeonTransform.position = pigeonLandSpot.position;
         pigeonAnim.SetBool(IsEatingHash, true);
     }
+
 }
