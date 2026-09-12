@@ -21,7 +21,7 @@ The player takes the role of an office worker trying to return home during a mon
 
 | Input         | Action                |
 | ------------- | --------------------- |
-| W / A / S / D | Move                  |
+| A / D         | Move                  |
 | E             | Interact / Collect    |
 | Mouse         | Interact with puzzles |
 
