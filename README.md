@@ -56,10 +56,9 @@ These assets were created by the group and are not sourced from external asset w
 
 ### Fonts
 
-The following fonts were used in the project:
+The following font was used in the project:
 
-* **[Font Name]** – [Source Website / Creator] – [URL]
-* **[Font Name]** – [Source Website / Creator] – [URL]
+* **[Aesprite]** – [fontstruct / adityaraj] – [(https://fontstruct.com/fontstructions/show/2260539/aseprite-9)]
 
 ## Team Contributions
 
