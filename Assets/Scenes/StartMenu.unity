@@ -4279,7 +4279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12e6f30684bd1e46aa746ab73773967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuCat
-  nextSceneName: Tutorial
+  nextSceneName: AlertScreen
   delayBeforeLoad: 1.5
   runOffSpeed: 1
   audioSource: {fileID: 1714519735}
