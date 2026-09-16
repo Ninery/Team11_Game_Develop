@@ -65,4 +65,14 @@ public class CatManager : MonoBehaviour
     {
         // Do nothing
     }
+
+    // Actually clears collected cats. Call this ONLY when the player is
+    // starting a brand new playthrough from the very beginning (e.g. from
+    // the pause menu's "Main Menu" button) -- never on a mid-level
+    // checkpoint restart, which should keep whatever cats were already
+    // collected.
+    public void ResetAllProgress()
+    {
+        collectedCatIds.Clear();
+    }
 }

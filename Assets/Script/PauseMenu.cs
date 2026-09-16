@@ -42,7 +42,15 @@ public class PauseMenu : MonoBehaviour
         if (pauseAction != null)
         {
             pauseAction.action.performed -= OnPausePerformed;
-            pauseAction.action.Disable();
+            // Deliberately NOT calling pauseAction.action.Disable() here.
+            // "Pause" lives in the Project-Wide Input Actions asset -- one
+            // shared instance for the whole game, not a copy per scene.
+            // On a scene load, Unity runs the NEW scene's OnEnable() before
+            // destroying the OLD scene's objects (and running their
+            // OnDisable()). If we called Disable() here, it would run right
+            // after the new scene's Enable() and silently turn Pause back
+            // off -- which is exactly why it worked once and then stopped.
+            // Leaving it enabled for the whole session avoids that race.
         }
     }
 
@@ -77,7 +85,10 @@ public class PauseMenu : MonoBehaviour
             pauseButton.SetActive(true);
     }
 
-    // Restart from the latest checkpoint
+    // Hook this up to your "Restart" button's OnClick() -- reloads the
+    // current scene, preserving anything meant to persist mid-game
+    // (e.g. collected cats), matching Keyu's existing checkpoint-restart
+    // behaviour. Deliberately does NOT touch CatManager.
     public void RestartFromCheckpoint()
     {
         Time.timeScale = 1f;
@@ -86,11 +97,19 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // Return to StartMenu
+    // Hook this up to your "Main Menu" button's OnClick()
     public void ReturnToMainMenu()
     {
+        // Restore timescale BEFORE loading, same reasoning as DeathScreen --
+        // otherwise the next scene can start frozen if timeScale is still 0.
         Time.timeScale = 1f;
         isPaused = false;
+
+        // This is a full restart of the game from the very beginning, so
+        // clear any collected cats -- unlike RestartFromCheckpoint() above,
+        // which deliberately leaves cat progress untouched.
+        if (CatManager.Instance != null)
+            CatManager.Instance.ResetAllProgress();
 
         SceneManager.LoadScene(mainMenuSceneName);
     }
