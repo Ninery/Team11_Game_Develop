@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: d9da6fa54d1a2b64e827ed9f87197e77
   - enabled: 1
+    path: Assets/Scenes/AlertScreen.unity
+    guid: 9c4f38c96f33b764d8aca0377ecc10a1
+  - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
@@ -19,7 +22,7 @@ EditorBuildSettings:
     guid: 05c8b29fe6d3f5247a856abe142bdc44
   - enabled: 1
     path: Assets/Scenes/Basement.unity
-    guid: 5efa84d2e2335ed49a0edf79a42ba9e4
+    guid: b073d2cf5b3935a4ca0db6c1ad9b5114
   - enabled: 1
     path: Assets/Scenes/EndScene.unity
     guid: 59896c41398903646ad60e5229271bdd
